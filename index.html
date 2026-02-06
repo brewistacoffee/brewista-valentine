@@ -38,6 +38,11 @@ body {
   box-shadow: 0 15px 40px rgba(255,105,180,.35);
 }
 
+.logo {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
 .initiative {
   font-size: 14px;
   color: #ff6fa5;
@@ -97,43 +102,17 @@ button {
   color:#ff4d8d;
 }
 
-/* Coupon popup */
-.popup {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
+/* Valentine spot button */
+.spotBtn {
   display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
-
-.popup-box {
-  background: #fff0f6;
-  padding: 25px;
-  border-radius: 20px;
-  text-align: center;
-  width: 85%;
-  max-width: 320px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-
-.coupon {
-  background: #ffe0ec;
-  border-radius: 12px;
-  padding: 10px;
-  margin: 12px 0;
-  font-weight: 600;
-  color: #ff4d8d;
-}
-
-.closeBtn {
-  background:#ff5fa2;
-  color:white;
-  border:none;
-  border-radius:20px;
-  padding:8px 20px;
-  cursor:pointer;
+  margin-top: 15px;
+  background: #ff4d8d;
+  color: white;
+  text-decoration: none;
+  padding: 12px 22px;
+  border-radius: 25px;
+  font-size: 16px;
+  display: inline-block;
 }
 </style>
 </head>
@@ -141,6 +120,10 @@ button {
 <body>
 
 <div class="card">
+
+  <!-- LOGO -->
+  <img src="brewista-logo.jpg" class="logo" alt="Brewista Logo">
+
   <div class="initiative">Initiative by Brewista Cafe Jaipur Airport Road</div>
 
   <div class="location">
@@ -161,17 +144,16 @@ button {
     YAYYYY 🎉💞<br>
     Love is in the air at Brewista Cafe ☕💗
   </div>
-</div>
 
-<!-- Coupon Popup -->
-<div class="popup" id="popup">
-  <div class="popup-box">
-    <h3>Valentine Special 💝</h3>
-    <p>You’ve unlocked a coupon!</p>
-    <div class="coupon">🎁 10% OFF on your bill</div>
-    <p style="font-size:12px;color:#888;">Show this screen at the counter</p>
-    <button class="closeBtn" onclick="closePopup()">Got it 💖</button>
-  </div>
+  <!-- Valentine Spot Button -->
+  <a 
+    href="https://share.google/tbJn5XdbR2Hg12iMm" 
+    target="_blank" 
+    class="spotBtn" 
+    id="spotBtn">
+    💘 Best Valentine’s Spot
+  </a>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -180,7 +162,7 @@ button {
 const noBtn=document.getElementById("noBtn");
 const yesBtn=document.getElementById("yesBtn");
 const loveText=document.getElementById("loveText");
-const popup=document.getElementById("popup");
+const spotBtn=document.getElementById("spotBtn");
 
 let texts=["No 🙈","Really? 🥺","Think again 😏","You can't 😍"];
 let i=0;
@@ -200,16 +182,10 @@ noBtn.style.top="70px";
 yesBtn.addEventListener("click",()=>{
   document.querySelector(".buttons").style.display="none";
   loveText.style.display="block";
+  spotBtn.style.display="inline-block";
+
   confetti({particleCount:250,spread:100});
-
-  setTimeout(()=>{
-    popup.style.display="flex";
-  },800);
 });
-
-function closePopup(){
-  popup.style.display="none";
-}
 
 /* Floating hearts */
 setInterval(()=>{
@@ -225,3 +201,4 @@ setInterval(()=>{
 
 </body>
 </html>
+
