@@ -19,11 +19,11 @@ body {
   overflow: hidden;
 }
 
+/* Floating hearts */
 .heart {
   position: absolute;
   animation: float 6s infinite;
 }
-
 @keyframes float {
   0% { transform: translateY(0); opacity: 0.6; }
   100% { transform: translateY(-100vh); opacity: 0; }
@@ -96,6 +96,45 @@ button {
   font-size:22px;
   color:#ff4d8d;
 }
+
+/* Coupon popup */
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.popup-box {
+  background: #fff0f6;
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+  width: 85%;
+  max-width: 320px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.coupon {
+  background: #ffe0ec;
+  border-radius: 12px;
+  padding: 10px;
+  margin: 12px 0;
+  font-weight: 600;
+  color: #ff4d8d;
+}
+
+.closeBtn {
+  background:#ff5fa2;
+  color:white;
+  border:none;
+  border-radius:20px;
+  padding:8px 20px;
+  cursor:pointer;
+}
 </style>
 </head>
 
@@ -124,12 +163,24 @@ button {
   </div>
 </div>
 
+<!-- Coupon Popup -->
+<div class="popup" id="popup">
+  <div class="popup-box">
+    <h3>Valentine Special 💝</h3>
+    <p>You’ve unlocked a coupon!</p>
+    <div class="coupon">🎁 10% OFF on your bill</div>
+    <p style="font-size:12px;color:#888;">Show this screen at the counter</p>
+    <button class="closeBtn" onclick="closePopup()">Got it 💖</button>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
 const noBtn=document.getElementById("noBtn");
 const yesBtn=document.getElementById("yesBtn");
 const loveText=document.getElementById("loveText");
+const popup=document.getElementById("popup");
 
 let texts=["No 🙈","Really? 🥺","Think again 😏","You can't 😍"];
 let i=0;
@@ -150,8 +201,17 @@ yesBtn.addEventListener("click",()=>{
   document.querySelector(".buttons").style.display="none";
   loveText.style.display="block";
   confetti({particleCount:250,spread:100});
+
+  setTimeout(()=>{
+    popup.style.display="flex";
+  },800);
 });
 
+function closePopup(){
+  popup.style.display="none";
+}
+
+/* Floating hearts */
 setInterval(()=>{
   let h=document.createElement("div");
   h.className="heart";
